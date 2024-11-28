@@ -12,17 +12,19 @@ from fastapi.responses import (
     StreamingResponse,
     UJSONResponse,
 )
+from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
 
+templates = Jinja2Templates(directory="./static/templates")
 
 @app.get("/@/{name}")
 async def read_item(name: str):
     return FileResponse("./static/templates/index.html")
 
-@app.get("/register")
-async def register():
-    return FileResponse("./static/templates/index.html")
+@app.get("/login")
+async def login():
+    return templates.TemplateResponse("login.html", {"request": "request"})
 
 @app.post("/register")
 async def register(name: Annotated[str, Form()], password: Annotated[str, Form()]):
