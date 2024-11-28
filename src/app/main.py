@@ -24,11 +24,8 @@ app.mount(
     name="static",
 )
 
-templates = Jinja2Templates(directory="./static/templates")
+templates = Jinja2Templates(directory="templates")
 
-@app.get("/@/{name}")
-async def read_item(name: str):
-    return FileResponse("./static/templates/index.html")
 
 @app.get("/login")
 async def login():
