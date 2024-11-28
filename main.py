@@ -24,7 +24,11 @@ async def read_item(name: str):
 
 @app.get("/login")
 async def login():
-    return templates.TemplateResponse("login.html", {"request": "request"})
+    return templates.TemplateResponse({"request": "request"}, "login.html")
+
+@app.get("/")
+async def home():
+    return templates.TemplateResponse({"request": "request" }, "index.html")
 
 @app.post("/register")
 async def register(name: Annotated[str, Form()], password: Annotated[str, Form()]):
