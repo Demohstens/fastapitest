@@ -20,11 +20,11 @@ app = FastAPI()
 
 app.mount(
     "/static",
-    StaticFiles(directory=Path(__file__).parent.parent.absolute() / "static"),
+    StaticFiles(directory=Path(__file__).parent.parent.absolute() / "static/"),
     name="static",
 )
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory=Path(__file__).parent.parent.absolute() / "templates/")
 
 
 @app.get("/login")
